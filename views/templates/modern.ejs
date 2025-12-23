@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= resume.name %> - Resume</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      padding: 30px;
+      color: #333;
+    }
+
+    .card {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .left {
+      width: 30%;
+      background: #2c3e50;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      margin-bottom: 20px;
+    }
+
+    .left h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .left p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .left h3 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #ecf0f1;
+      border-bottom: 1px solid #ecf0f1;
+      padding-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .left ul {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+    }
+
+    .left ul li {
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 8px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .right {
+      width: 70%;
+      padding: 30px 40px;
+    }
+
+    .right h2 {
+      color: #2c3e50;
+      margin-top: 25px;
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .right p {
+      margin-top: 10px;
+      line-height: 1.6;
+      font-size: 15px;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        width: 100%;
+        text-align: center;
+      }
+
+      .right {
+        padding: 20px;
+      }
+
+      .left ul li {
+        display: inline-block;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<%- include('../partials/header.ejs') %>
+
+<div class="card">
+  <div class="left">
+   
+      <img src="<%= resume.photo %>" alt="Profile Picture" class="profile-pic">
+  
+
+    <h1><%= resume.name %></h1>
+    <p><%= resume.email %></p>
+    <p><%= resume.phone %></p>
+
+    <h3>Skills</h3>
+    <ul>
+      <% resume.skills.forEach(skill => { %>
+        <li><%= skill %></li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <div class="right">
+    <h2>Profile</h2>
+    <p><%= resume.summary %></p>
+
+    <h2>Education</h2>
+    <p><%= resume.education %></p>
+
+    <h2>Experience</h2>
+    <p><%= resume.experience %></p>
+  </div>
+</div>
+
+</body>
+</html>

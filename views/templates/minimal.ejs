@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= resume.name %> - Resume</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 25px;
+      border: 2px solid #4a90e2;
+    }
+
+    .header-info h1 {
+      font-size: 28px;
+      color: #222;
+    }
+
+    .header-info small {
+      color: #777;
+      font-size: 14px;
+      display: block;
+      margin-top: 5px;
+    }
+
+    section {
+      margin-top: 25px;
+    }
+
+    section b {
+      display: block;
+      font-size: 18px;
+      color: #4a90e2;
+      margin-bottom: 8px;
+    }
+
+    section p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skills span {
+      background: #e1efff;
+      color: #4a90e2;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-pic {
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<%- include('../partials/header.ejs') %>
+
+<div class="container">
+  <div class="header">
+      <img src="<%= resume.photo %>" alt="Profile Picture" class="profile-pic">
+   
+    <div class="header-info">
+      <h1><%= resume.name %></h1>
+      <small><%= resume.email %> | <%= resume.phone %></small>
+    </div>
+  </div>
+
+  <section>
+    <b>Summary</b>
+    <p><%= resume.summary %></p>
+  </section>
+
+  <section>
+    <b>Education</b>
+    <p><%= resume.education %></p>
+  </section>
+
+  <section>
+    <b>Experience</b>
+    <p><%= resume.experience %></p>
+  </section>
+
+  <section>
+    <b>Skills</b>
+    <div class="skills">
+      <% resume.skills.forEach(skill => { %>
+        <span><%= skill %></span>
+      <% }) %>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

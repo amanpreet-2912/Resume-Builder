@@ -1,18 +1,19 @@
-// const Resume = require("../models/resumeSchema");
-async function handleCreateResume(req, res) {
-  try {
-    if (req.body.skills && typeof req.body.skills === "string") {
-      req.body.skills = req.body.skills.split(",");
-    }
-    console.log(req.body);
-    // const resume = await Resume.create(req.body);
-    // console.log(resume);
+function handleCreateResume(req, res) {
+  console.log(req.body);
+  console.log(req.file);
+      const { template, skills, ...rest } = req.body;
+   const skillsArray = req.body.skills
+    ? req.body.skills.split(","):[];
 
-    return res.render("resumeView", {resume:req.body});
-  } catch (err) {
-    console.error("Error creating resume:", err);
-    return res.send("Error creating resume");
-  }
+  const resumeData = {
+    ...rest,
+    skills: skillsArray,
+    photo:req.file ? `/uploads/${req.file.filename}`:null,
+  };
+
+  return res.render(`templates/${template}`, {
+      resume: resumeData
+    });
 }
 async function showForm(req, res) {
   res.render("resumeForm");
